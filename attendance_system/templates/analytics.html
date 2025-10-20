@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <img src="/static/nitt.png" alt="logo">
+        <h1>Analytics Dashboard</h1>
+        <i class="ri-arrow-left-line" onclick="location.href='/'" style="cursor: pointer;"></i>
+    </nav>
+    <div id="analytics-dashboard">
+        <h2>Attendance Analytics</h2>
+        <canvas id="attendanceChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function loadAnalytics() {
+            fetch('/api/summary')
+                .then(response => response.json())
+                .then(data => {
+                    const ctx = document.getElementById('attendanceChart').getContext('2d');
+
+                    // Prepare data for analytics
+                    const presentStudentCount = data.present_students.length;
+                    const absentStudentCount = data.absent_students.length;
+
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Present', 'Absent'],
+                            datasets: [{
+                                label: 'Attendance Distribution',
+                                data: [presentStudentCount, absentStudentCount],
+                                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                                borderWidth: 1
+                            }]
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading analytics:', error));
+        }
+
+        window.onload = loadAnalytics;
+    </script>
+</body>
+</html>
