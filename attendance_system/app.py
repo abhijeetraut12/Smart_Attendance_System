@@ -67,37 +67,37 @@ def log_attendance(name, time, count):
 
 # Load known faces and encodings
 def load_known_faces():
-    abhay_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/abhay.jpg")
+    abhay_image = face_recognition.load_image_file(os.path.join("photos", "abhay.jpg")
     abhay_encoding = face_recognition.face_encodings(abhay_image)[0]
 
-    deva_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/deva.png")
+    deva_image = face_recognition.load_image_file(os.path.join("photos", "deva.png")
     deva_encoding = face_recognition.face_encodings(deva_image)[0]
 
-    mohan_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/mohan.png")
+    mohan_image = face_recognition.load_image_file(os.path.join("photos", "mohan.png")
     mohan_encoding = face_recognition.face_encodings(mohan_image)[0]
 
-    shubham_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/shubham.png")
+    shubham_image = face_recognition.load_image_file(os.path.join("photos", "shubham.png")
     shubham_encoding = face_recognition.face_encodings(shubham_image)[0]
 
-    vinit_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/vinit.png")
+    vinit_image = face_recognition.load_image_file(os.path.join("photos", "vinit.png")
     vinit_encoding = face_recognition.face_encodings(vinit_image)[0]
 
-    omd_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/omd.png")
+    omd_image = face_recognition.load_image_file(os.path.join("photos", "omd.png")
     omd_encoding = face_recognition.face_encodings(omd_image)[0]
 
-    chetan_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/chetan.png")
+    chetan_image = face_recognition.load_image_file(os.path.join("photos", "chetan.png")
     chetan_encoding = face_recognition.face_encodings(chetan_image)[0]
 
-    kushal_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/kushal.png")
+    kushal_image = face_recognition.load_image_file(os.path.join("photos", "kushal.png")
     kushal_encoding = face_recognition.face_encodings(kushal_image)[0]
 
-    abhijeet_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/abhijeet.png")
+    abhijeet_image = face_recognition.load_image_file(os.path.join("photos", "abhijeet.png")
     abhijeet_encoding = face_recognition.face_encodings(abhijeet_image)[0]
 
-    om_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/om.png")
+    om_image = face_recognition.load_image_file(os.path.join("photos", "om.png")
     om_encoding = face_recognition.face_encodings(om_image)[0]
 
-    sumit_image = face_recognition.load_image_file("C:/Users/ABHJEET/OneDrive/Desktop/attendance_system/attendance_system/photos/sumit.png")
+    sumit_image = face_recognition.load_image_file(os.path.join("photos", "sumit.png")
     sumit_encoding = face_recognition.face_encodings(sumit_image)[0]
 
     known_face_encodings = [
@@ -197,7 +197,7 @@ def attendance_summary():
 @app.route('/download_attendance')
 def download_attendance():
     current_date = datetime.now().strftime("%Y-%m-%d")
-    file_path = os.path.join('C:\\Users\\ABHJEET\\OneDrive\\Desktop\\attendance_system\\logs', current_date + '.csv')
+    file_path = os.path.join("logs", current_date + ".csv")
     
     if os.path.exists(file_path):
         return send_file(file_path, as_attachment=True)
