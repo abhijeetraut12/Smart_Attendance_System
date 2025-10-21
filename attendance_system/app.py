@@ -8,13 +8,16 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 import os
-import winsound
+# import winsound
 
 app = Flask(__name__)
 
 # Sound function to play a beep
+# def play_sound():
+#     winsound.Beep(700, 500)
 def play_sound():
-    winsound.Beep(700, 500)
+    print("Beep sound (disabled on server)")
+
 
 # Function to send email notifications
 def send_email(name, time):
@@ -222,5 +225,6 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
