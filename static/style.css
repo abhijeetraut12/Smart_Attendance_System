@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 2vh;
+    background-color: #019dcd;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+nav{
+    width: 100%;
+    height: 8vh;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* color: #fff; */
+    border-radius: 10vh;
+    overflow: hidden;
+    gap:10px;
+    margin-bottom: 1vh;
+}
+nav img{
+    margin-left: 1vw;
+    width: 5%;
+    height: 100%;
+    /* border-radius: 50%;
+    border: #111 solid 1px; */
+}
+
+nav h1{
+    color: #111;
+    font-size: 2em;
+    margin: 0;
+    font-weight: 300;
+}
+
+nav i{
+    font-size: 1.5em;
+    color: #0d5504;
+    margin-right: 2vw;
+}
+.container {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #019dcd;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+#attendence-frame{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 2vh;
+    position: relative;
+    border-radius: 3vh;
+    overflow: hidden;
+    width: 50%;
+    height: 75vh;
+}
+#preabs{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+#present{
+    width: 55%;
+    max-height: 100%;
+    overflow-y: auto;
+    /* background-color: #fff; */
+}
+
+#absent{
+    width: 40%;
+    max-height: 100%;
+    overflow-y: auto;
+    /* background-color: #111; */
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.camera-frame {
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    position: relative;
+    border-radius: 3vh;
+    overflow: hidden;
+    /* background-color: red; */
+}
+.camera-frame video {
+    border-radius: 3vh;
+    
+}
+
+#analytics-dashboard {
+    text-align: center;
+    margin: 20px;
+}
+canvas {
+    max-width: 600px;
+    margin: 0 auto;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Attendance System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <nav>
+        <img src="/static/nitt.png" alt="logo">
+        <h1>Nagpur Institute of Technology</h1>
+        <i class="ri-bar-chart-line" onclick="location.href='/analytics'" style="cursor: pointer;"></i>
+        <i class="ri-download-2-line" onclick="downloadAttendance()" style="cursor: pointer;"></i>
+    </nav>
+    
+    <script>
+        function downloadAttendance() {
+            window.location.href = '/download_attendance';
+        }
+    </script>    
+    <div class="container">
+        <div id="attendence-frame">
+            <h2>Real-time Attendance Summary</h2>
+            <div id="preabs">
+                <div id="present">
+                    <h3>Present Students</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Detected Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="present-table-body"></tbody>
+                    </table>
+                </div>
+                <div id="absent">
+                    <h3>Absent Students</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="absent-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="camera-frame">
+            <h1>Live Camera Frame</h1>
+            <img src="/video_feed" width="640" height="480">
+        </div>
+    </div>
+
+    <script>
+        function fetchSummary() {
+            fetch('/api/summary')
+                .then(response => response.json())
+                .then(data => {
+                    const presentStudents = data.present_students;
+                    const absentStudents = data.absent_students;
+
+                    const presentTable = document.getElementById('present-table-body');
+                    const absentTable = document.getElementById('absent-table-body');
+
+                    presentTable.innerHTML = '';
+                    absentTable.innerHTML = '';
+
+                    presentStudents.forEach(student => {
+                        const row = document.createElement('tr');
+                        const nameCell = document.createElement('td');
+                        const timeCell = document.createElement('td');
+
+                        nameCell.textContent = student.name;
+                        timeCell.textContent = student.time;
+
+                        row.appendChild(nameCell);
+                        row.appendChild(timeCell);
+                        presentTable.appendChild(row);
+                    });
+
+                    absentStudents.forEach(student => {
+                        const row = document.createElement('tr');
+                        const nameCell = document.createElement('td');
+                        nameCell.textContent = student;
+                        row.appendChild(nameCell);
+                        absentTable.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching summary:', error);
+                });
+        }
+
+        setInterval(fetchSummary, 10000);
+        window.onload = fetchSummary;
+    </script>
+
+</body>
+</html>
